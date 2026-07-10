@@ -1,0 +1,11 @@
+# One RSS/Atom feed URL per line. Lines starting with # are ignored.
+# NOTE: these URLs were correct as far as I know, but feed URLs change —
+# verify each one loads in your browser before relying on it.
+
+https://www.anthropic.com/rss.xml
+https://openai.com/news/rss.xml
+https://blog.google/technology/ai/rss/
+https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+https://techcrunch.com/category/artificial-intelligence/feed/
+https://venturebeat.com/category/ai/feed/
+https://arstechnica.com/ai/feed/

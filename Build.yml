@@ -1,0 +1,42 @@
+name: Build The Wire
+
+on:
+  schedule:
+    - cron: "30 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-the-wire
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install feedparser requests
+
+      - name: Build the briefing
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python build.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "wire-bot"
+          git config user.email "actions@github.com"
+          git add index.html state.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Issue $(date -u +'%Y-%m-%d') — automated build"
+          git push

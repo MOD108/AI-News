@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wire — AI Intelligence Briefing</title>
+<meta name="description" content="A personal briefing on artificial intelligence — launches, alerts, research and policy. Curated for signal, published daily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F5F0; --panel:#FCFCFA; --ink:#15171B; --ink-soft:#4A4E57;
+    --line:#D9DAD2; --wire:#1E33D9; --alert:#D63A22; --research:#0B7A5F;
+    --policy:#8A5A00; --radius:14px; --maxw:880px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;
+       font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'IBM Plex Mono',monospace}
+
+  .ticker{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;
+    padding:9px 0;border-bottom:3px solid var(--wire)}
+  .ticker__track{display:inline-block;animation:wire 42s linear infinite;padding-left:100%}
+  .ticker__track span{margin-right:56px}
+  .ticker__track b{color:#8FA0FF;font-weight:600}
+  @keyframes wire{to{transform:translateX(-100%)}}
+  @media (prefers-reduced-motion: reduce){
+    .ticker__track{animation:none;padding-left:16px;white-space:normal}
+  }
+
+  header{max-width:var(--maxw);margin:0 auto;padding:56px 24px 28px}
+  .issue-line{display:flex;justify-content:space-between;align-items:baseline;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--line);
+    padding-bottom:12px;margin-bottom:22px;flex-wrap:wrap;gap:8px}
+  .issue-line b{color:var(--wire)}
+  h1.masthead{font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 118;
+    font-weight:900;font-size:clamp(52px,9.5vw,104px);line-height:.92;
+    letter-spacing:-.02em;text-transform:uppercase}
+  h1.masthead em{font-style:normal;color:transparent;-webkit-text-stroke:2px var(--ink)}
+  .dek{margin-top:18px;max-width:560px;font-size:19px;color:var(--ink-soft)}
+
+  nav.filters{max-width:var(--maxw);margin:26px auto 0;padding:0 24px;
+    display:flex;gap:10px;flex-wrap:wrap}
+  .chip{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:100px;
+    border:1.5px solid var(--line);background:var(--panel);color:var(--ink-soft);
+    cursor:pointer;transition:all .15s ease}
+  .chip:hover{border-color:var(--ink)}
+  .chip:focus-visible{outline:2px solid var(--wire);outline-offset:2px}
+  .chip.active{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+  main{max-width:var(--maxw);margin:34px auto 0;padding:0 24px}
+  article.story{background:var(--panel);border:1px solid var(--line);
+    border-radius:var(--radius);padding:28px 30px;margin-bottom:18px;
+    transition:transform .15s ease, box-shadow .15s ease}
+  article.story:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(21,23,27,.07)}
+  article.story.lead{padding:38px 34px;border-left:6px solid var(--wire)}
+  article.story.lead h2{font-size:clamp(26px,4vw,36px)}
+  article.story.hidden{display:none}
+  .story-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.1em;
+    text-transform:uppercase;margin-bottom:12px}
+  .tag{padding:3px 10px;border-radius:5px;font-weight:600;color:#fff}
+  .tag.launch{background:var(--wire)} .tag.alert{background:var(--alert)}
+  .tag.research{background:var(--research)} .tag.policy{background:var(--policy)}
+  .stamp{color:var(--ink-soft)}
+  article.story h2{font-family:'Archivo',sans-serif;font-variation-settings:'wdth' 105;
+    font-weight:800;font-size:22px;line-height:1.18;letter-spacing:-.01em;margin-bottom:10px}
+  article.story h2 a{color:inherit;text-decoration:none}
+  article.story h2 a:hover{color:var(--wire)}
+  article.story p{color:var(--ink-soft);font-size:16.5px}
+  .readmore{display:inline-block;margin-top:14px;font-family:'IBM Plex Mono',monospace;
+    font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--wire);text-decoration:none;border-bottom:2px solid var(--wire);padding-bottom:2px}
+  .readmore:hover{color:var(--ink);border-color:var(--ink)}
+
+  section.quickhits{max-width:var(--maxw);margin:46px auto 0;padding:0 24px}
+  .section-label{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+    display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+  ul.hits{list-style:none}
+  ul.hits li{display:flex;gap:16px;align-items:baseline;padding:13px 4px;
+    border-bottom:1px dashed var(--line);font-size:16px}
+  ul.hits .stamp{flex-shrink:0;font-size:11.5px}
+  ul.hits a{color:var(--ink);text-decoration:none}
+  ul.hits a:hover{color:var(--wire)}
+
+  footer{max-width:var(--maxw);margin:54px auto 0;padding:26px 24px 60px;
+    border-top:1px solid var(--line);display:flex;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12px;
+    letter-spacing:.06em;color:var(--ink-soft)}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  footer a:hover{color:var(--wire);border-color:var(--wire)}
+
+  @media (max-width:560px){
+    article.story{padding:22px 20px}
+    article.story.lead{padding:26px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-label="Latest headlines ticker">
+  <div class="ticker__track"><span><b>LAUNCH ///</b> How Deutsche Telekom is rewiring telecommunications with AI</span><span><b>LAUNCH ///</b> OpenAI says GPT 5.6 is the ‘preferred model’ for Microsoft Copilot 365 amid breakup chatter</span><span><b>LAUNCH ///</b> Microsoft’s carbon emissions went up 25 percent last year</span><span><b>LAUNCH ///</b> Fidji Simo steps down from OpenAI’s No. 2 role</span></div>
+</div>
+
+<header>
+  <div class="issue-line">
+    <span>Issue <b>001</b></span>
+    <span>Friday 10 July 2026</span>
+    <span>London, UK</span>
+  </div>
+  <h1 class="masthead">The <em>Wire</em></h1>
+  <p class="dek">A personal briefing on artificial intelligence — launches, alerts, research and policy. Curated for signal, published daily.</p>
+</header>
+
+<nav class="filters" aria-label="Filter stories by category">
+  <button class="chip active" data-filter="all">All</button>
+  <button class="chip" data-filter="launch">Launches</button>
+  <button class="chip" data-filter="alert">Alerts</button>
+  <button class="chip" data-filter="research">Research</button>
+  <button class="chip" data-filter="policy">Policy</button>
+</nav>
+
+<main id="feed">
+      <article class="story lead" data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">10 JUL 2026 · 08:00 — OpenAI News</span>
+        </div>
+        <h2><a href="https://openai.com/index/deutsche-telekom" target="_blank" rel="noopener">How Deutsche Telekom is rewiring telecommunications with AI</a></h2>
+        <p>How Deutsche Telekom is becoming an AI-native telco with OpenAI-transforming customer service, employee workflows, network operations, and the future of voice.</p>
+        <a class="readmore" href="https://openai.com/index/deutsche-telekom" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">10 JUL 2026 · 01:16 — AI News &amp; Artificial Intelligence | TechCrunch</span>
+        </div>
+        <h2><a href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/" target="_blank" rel="noopener">OpenAI says GPT 5.6 is the ‘preferred model’ for Microsoft Copilot 365 amid breakup chatter</a></h2>
+        <p>OpenAI&#x27;s new family of models will continue to power Microsoft&#x27;s suite of workplace and productivity apps.</p>
+        <a class="readmore" href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">10 JUL 2026 · 01:04 — AI | The Verge</span>
+        </div>
+        <h2><a href="https://www.theverge.com/tech/963728/microsoft-sustainability-report-2026" target="_blank" rel="noopener">Microsoft’s carbon emissions went up 25 percent last year</a></h2>
+        <p>Microsoft may once again be struggling to keep up with its own climate goals, according to its 2026 sustainability report. As reported by GeekWire, the report states that Microsoft&#x27;s carbon emissions increased 25 percent…</p>
+        <a class="readmore" href="https://www.theverge.com/tech/963728/microsoft-sustainability-report-2026" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">10 JUL 2026 · 00:38 — AI News &amp; Artificial Intelligence | TechCrunch</span>
+        </div>
+        <h2><a href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Fidji Simo steps down from OpenAI’s No. 2 role</a></h2>
+        <p>OpenAI&#x27;s No. 2 executive, Fidji Simo, is stepping down from her full-time role after her medical leave proved longer than expected — a leadership vacuum that comes at a tricky time as the company eyes a possible IPO and …</p>
+        <a class="readmore" href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">10 JUL 2026 · 00:24 — AI | The Verge</span>
+        </div>
+        <h2><a href="https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor" target="_blank" rel="noopener">Fidji Simo steps down from leading OpenAI’s AGI work due to illness</a></h2>
+        <p>OpenAI&#x27;s Fidji Simo is departing her full-time role as the company&#x27;s AGI chief and is transitioning to being a &quot;part-time advisor,&quot; she said on X. The news follows Simo&#x27;s original announcement in April that she would tak…</p>
+        <a class="readmore" href="https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="alert">
+        <div class="story-meta">
+          <span class="tag alert">Alert</span>
+          <span class="stamp mono">09 JUL 2026 · 23:24 — AI News &amp; Artificial Intelligence | TechCrunch</span>
+        </div>
+        <h2><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">OpenAI launches its new family of models with GPT-5.6</a></h2>
+        <p>OpenAI&#x27;s latest family of models promises improvements across a range of areas, including cybersecurity.</p>
+        <a class="readmore" href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="policy">
+        <div class="story-meta">
+          <span class="tag policy">Policy</span>
+          <span class="stamp mono">09 JUL 2026 · 23:08 — AI News &amp; Artificial Intelligence | TechCrunch</span>
+        </div>
+        <h2><a href="https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/" target="_blank" rel="noopener">An AI agent startup just let its agent run its $100M fundraise</a></h2>
+        <p>Lyzr, a startup that builds AI agents for enterprises, used its own AI agent to raise a $100 million round — proof, evidently, that the product actually works.</p>
+        <a class="readmore" href="https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+      <article class="story " data-tag="launch">
+        <div class="story-meta">
+          <span class="tag launch">Launch</span>
+          <span class="stamp mono">09 JUL 2026 · 23:03 — AI News &amp; Artificial Intelligence | TechCrunch</span>
+        </div>
+        <h2><a href="https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/" target="_blank" rel="noopener">OpenAI is shutting down Atlas, but its AI browser ambitions are still growing</a></h2>
+        <p>OpenAI is sunsetting its AI-powered browser after less than a year. But it&#x27;s moving some agentic browsing features to its desktop app and a Chrome extension.</p>
+        <a class="readmore" href="https://techcrunch.com/2026/07/09/openai-is-shutting-down-atlas-but-its-ai-browser-ambitions-are-still-growing/" target="_blank" rel="noopener">Read the full story →</a>
+      </article>
+</main>
+
+<section class="quickhits">
+  <div class="section-label">Quick hits</div>
+  <ul class="hits">
+      <li><span class="stamp mono">09 JUL</span><a href="https://techcrunch.com/2026/07/09/elon-musk-praises-mythos-fable-promises-not-to-cut-off-anthropic/" target="_blank" rel="noopener">Elon Musk praises Mythos/Fable, promises not to ‘cut off’ Anthropic</a></li>
+      <li><span class="stamp mono">09 JUL</span><a href="https://techcrunch.com/2026/07/09/can-ai-answer-the-3-trillion-question/" target="_blank" rel="noopener">Can AI answer the $3 trillion question?</a></li>
+      <li><span class="stamp mono">09 JUL</span><a href="https://arstechnica.com/ai/2026/07/openai-wants-its-new-tool-to-do-your-work-for-you-and-with-you/" target="_blank" rel="noopener">OpenAI wants its new tool to do your work for you and with you</a></li>
+      <li><span class="stamp mono">09 JUL</span><a href="https://www.theverge.com/ai-artificial-intelligence/963654/openai-chatgpt-atlas-ai-browser-shut-down-sunset" target="_blank" rel="noopener">The ChatGPT browser is already dead</a></li>
+      <li><span class="stamp mono">09 JUL</span><a href="https://arstechnica.com/ai/2026/07/humanoid-robots-controlled-by-surgeons-did-world-first-operation-on-live-pigs/" target="_blank" rel="noopener">Humanoid robots controlled by surgeons did world-first operation on live pigs</a></li>
+      <li><span class="stamp mono">09 JUL</span><a href="https://www.theverge.com/ai-artificial-intelligence/963628/google-ai-generated-ads-label" target="_blank" rel="noopener">Google will now tell you if an ad was made with AI</a></li>
+  </ul>
+</section>
+
+<footer>
+  <span>© 2026 The Wire — auto-compiled, human-owned</span>
+  <span class="mono">last build: 10 Jul 2026 · 13:28 BST</span>
+</footer>
+
+<script>
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const f = chip.dataset.filter;
+    document.querySelectorAll('article.story').forEach(a => {
+      a.classList.toggle('hidden', f !== 'all' && a.dataset.tag !== f);
+    });
+  });
+});
+</script>
+</body>
+</html>
